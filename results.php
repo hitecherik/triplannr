@@ -1,18 +1,6 @@
 <?php
 	include "login.php";
 
-	class Parameter {
-		public $name = "";
-		public $unit = "";
-		public $code = "";
-
-		function __construct($param) {
-			$this->name = $param;
-			$this->unit = $param["units"];
-			$this->code = $param["name"];
-		}
-	}
-
 	class Day {
 		public $date = "";
 		public $day = array();
@@ -61,7 +49,7 @@
 	$forecasts = array();
 
 	foreach ($weather_info->Wx->Param as $param) {
-		array_push($weather_params, new Parameter($param));
+		$weather_params[$param["name"]] = [$param["units"], $param];
 	}
 
 	foreach ($weather_info->DV->Location->Period as $period) {
