@@ -1,5 +1,5 @@
 <?php
-	include "logins.php";
+	include "login.php";
 
 	class Parameter {
 		public $name = "";
