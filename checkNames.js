@@ -9,14 +9,14 @@ function checkPlaceName(str) {
         ajax = new ActiveXObject("Microsoft.XMLHTTP");
     }
     // create request
+    ajax.open("POST", "checkNames.php", true);
     ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    ajax.open("POST", "URL", true);
-    ajax.send(str);
+    ajax.send('place=' + str);
     // ajax process data
     ajax.onreadystatechange = function() {
         if (ajax.readyState == 4 && ajax.status == 200) {
             data = ajax.responseText;
-
+            alert(data);
             // data gets outputed here
         }
     }
