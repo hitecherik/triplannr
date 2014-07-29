@@ -9,11 +9,11 @@
 	$activities = array(); // set below
 
 	if (isset($_REQUEST["indoorActivity"])) {
-		array_push($indoorActivities, new Activity("indoorActivity", true));
+		array_push($indoorActivities, new Activity("Museum", true));
 	}
 
 	if (isset($_REQUEST["outdoorActivity"])) {
-		array_push($activities, new Activity("outdoorActivity"));
+		array_push($activities, new Activity("Beach"));
 	}
 
 	if (count($indoorActivities) > 0) {
@@ -118,6 +118,15 @@
 		.day {
 			padding: 0 25px;
 		}
+
+		table {
+
+		}
+
+		td:first-child {
+			font-weight: bold;
+			padding-right: 10px;
+		}
 	</style>
 </head>
 <body>
@@ -144,16 +153,19 @@
 				<div class="days">
 					<?php
 						$i = 0;
+						$times = array("9am", "Noon", "3pm");
 						foreach ($trip_activities as $day_activities) {
 							$i++;
+							$j = 0;
 
-							echo "<div class=\"day\"><h3>Day $i</h3><ol>";
+							echo "<div class=\"day\"><h3>Day $i</h3><table>";
 
 							foreach ($day_activities as $day_activity) {
-								echo "<li>$day_activity</li>";
+								echo "<tr><td>{$times[$j]}</td><td>$day_activity</td></tr>";
+								$j++;
 							}
 
-							echo "</ol></div>";
+							echo "</table></div>";
 						}
 					?>
 			 	</div>
