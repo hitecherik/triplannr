@@ -2,11 +2,11 @@
 	class Activity {
 		public $name = "";
 		public $count = 0;
-		public $indoorActivity = false;
+		public $allowsPrecipitation = false;
 
-		function __construct($name, $indoorActivity = false) {
+		function __construct($name, $allowsPrecipitation = false) {
 			$this->name = $name;
-			$this->indoorActivity = $indoorActivity;
+			$this->allowsPrecipitation = $allowsPrecipitation;
 		}
 
 		public function add() {
@@ -15,12 +15,28 @@
 			return $this->name;
 		}
 
-		public static function compareCounts($one, $two) {
-			if ($two > $one) {
-				return true;
+		private function compareObjects($a, $b) {
+			if ($a->count == $b->count) {
+				return 0;
 			}
 
-			return false;
+			return ($a->count > $b->count) ? 1 : -1;
+		}
+
+		public static function compareCounts(&$array) {
+			usort($array, "self::compareObjects");
+		}
+
+		public static function withPrecipitation(&$array) {
+			$with_precipitation = array();
+
+			foreach ($array as $activity) {
+				if ($activity->allowsPrecipitation) {
+					array_push($with_precipitation, $activity);
+				}
+			}
+
+			$array = $with_precipitation;
 		}
 	}
 

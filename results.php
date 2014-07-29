@@ -5,21 +5,14 @@
 	// retrieve inputs
 	$place = ucwords($_REQUEST["place"]);
 	$startAndEnd = [implode("-", array_reverse(explode("/", $_REQUEST["startDate"]))), implode("-", array_reverse(explode("/", $_REQUEST["endDate"])))];
-	$indoorActivities = array(); // set below
 	$activities = array(); // set below
 
 	if (isset($_REQUEST["indoorActivity"])) {
-		array_push($indoorActivities, new Activity("Museum", true));
+		array_push($activities, new Activity("Museum", true));
 	}
 
 	if (isset($_REQUEST["outdoorActivity"])) {
 		array_push($activities, new Activity("Beach"));
-	}
-
-	if (count($indoorActivities) > 0) {
-		$activities = array_merge($activities, $indoorActivities);
-	} else {
-		$indoorActivities = $activities;
 	}
 
 	// doctors dates
@@ -44,12 +37,13 @@
 
 	$weather_params = array();
 	$forecasts = array();
-	$trip_activities = array();
 
+	// fetches weather parameters
 	foreach ($weather_info->Wx->Param as $param) {
 		$weather_params[(string) $param["name"]] = [$param["units"], $param];
 	}
 
+	// fetches weather info
 	foreach ($weather_info->DV->Location->Period as $period) {
 		$period_day = substr($period["value"], 0, -1);
 
@@ -58,42 +52,81 @@
 		}
 	}
 
+	// generates activity for each day
+	$trip_activities = array();
+
 	foreach ($forecasts as $day) {
 		$day_activities = array();
-
 		$precipitation = (int) $day->day["PPd"];
+
+		Activity::compareCounts($activities);
 
 		if ($precipitation < 25) {
 			for ($i = 0; $i < 3; $i++) {
-				if (Activity::compareCounts($activities[0]->count, $activities[1]->count)) {
-					array_push($day_activities, $activities[0]->add());
-				} else {
-					array_push($day_activities, $activities[1]->add());
-				}
+				array_push($day_activities, $activities[0]->add());
+				Activity::compareCounts($activities);
 			}
 		} else if ($precipitation < 50) {
-			array_push($day_activities, $indoorActivities[0]->add());
+			$limit = 2;
 
-			for ($i = 0; $i < 2; $i++) {
-				if (Activity::compareCounts($activities[0]->count, $activities[1]->count)) {
-					array_push($day_activities, $activities[0]->add());
-				} else {
-					array_push($day_activities, $activities[1]->add());
+			foreach ($activities as $activity) {
+				if ($activity->allowsPrecipitation) {
+					array_push($day_activities, $activity->add());
+					break;
 				}
 			}
-		} else if ($precipitation < 75) {
-			for ($i = 0; $i < 2; $i++) {
-				array_push($day_activities, $indoorActivities[0]->add());
+
+			if (count($day_activities) == 0) {
+				$limit = 3;
 			}
 
-			if (Activity::compareCounts($activities[0]->count, $activities[1]->count)) {
-				array_push($day_activities, $activities[0]->add());
-			} else {
-				array_push($day_activities, $activities[1]->add());
+			Activity::compareCounts($activities);
+
+			for ($i = 0; $i < $limit; $i++) {
+				array_push($day_activities, $activities[$i]->add());
+			}
+		} else if ($precipitation < 75) {
+			$i = 0;
+			$limit = 1;
+
+			foreach ($activities as $activity) {
+				if ($activity->allowsPrecipitation) {
+					$i++;
+					array_push($day_activities, $activity->add());
+				}
+
+				if ($i == 2) {
+					break;
+				}
+			}
+
+			if ($i != 2) {
+				$limit = 3 - $i;
+			}
+
+			for ($i = 0; $i < $limit; $i++) {
+				Activity::compareCounts($activities);
+				array_push($day_activities, $activities[$i]->add());
 			}
 		} else {
-			for ($i = 0; $i < 3; $i++) {
-				array_push($day_activities, $indoorActivities[0]->add());
+			$i = 0;
+
+			foreach ($activities as $activity) {
+				if ($activity->allowsPrecipitation) {
+					$i++;
+					array_push($day_activities, $activity->add());
+				}
+
+				if ($i == 3) {
+					break;
+				}
+			}
+
+			if ($i != 3) {
+				for ($j = 0; $j < 3 - $i; $j++) {
+					Activity::compareCounts($activities);
+					array_push($day_activities, $activities[$j]->add());
+				}
 			}
 		}
 
@@ -176,7 +209,7 @@
 			<a href="#"><img src="img/facebook.png" id="FB_Icon" /></a>
 			<a href="#"><img src="img/twitter.png" id="T_Icon" /></a>
 			<a href="http://www.youtube.com"><img src="img/youtube.png" id="YT_Icon" /></a>
-			<p>Copyright  | Last updated 28/07/2014 | Under <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International</a> license.</p>
+			<p>Copyright | Under <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution 4.0 International Licence</a>.</p>
 		</footer>
 	</div>
 </body>
