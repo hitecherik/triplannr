@@ -100,6 +100,7 @@
 		array_push($trip_activities, $day_activities);
 	}
 ?>
+<!doctype html>
 <html>
 <head>
 	<meta charset="UTF-8" />
