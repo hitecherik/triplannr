@@ -151,9 +151,14 @@
 		.day {
 			padding: 0 25px;
 		}
+		
+		.days {
+			margin-bottom: 2em;
+		}
 
-		table {
-
+		a {
+			color: rgb(77, 77, 77);
+			border-bottom: 1px dotted currentColor;
 		}
 
 		td:first-child {
@@ -174,12 +179,9 @@
 				<li class="last"><a href="#"><span>Ideas</span></a></li>
 			</ul>
 		</nav>
-
-		
 	</div>
 	<div class="wrap">
 		<div class="body">
-			
 			<div class="text">
 				<h2>Here is your trip:</h2>
 
@@ -209,7 +211,7 @@
 			<a href="#"><img src="img/facebook.png" id="FB_Icon" /></a>
 			<a href="#"><img src="img/twitter.png" id="T_Icon" /></a>
 			<a href="http://www.youtube.com"><img src="img/youtube.png" id="YT_Icon" /></a>
-			<p>Copyright | Under <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution 4.0 International Licence</a>.</p>
+			<p>Copyright &copy; Alex Nielsen, Sophie Speed, Ollie Cole and Carl Ntifo 2014 under <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution 4.0 International Licence</a>.</p>
 		</footer>
 	</div>
 </body>
