@@ -165,6 +165,10 @@
 			font-weight: bold;
 			padding-right: 10px;
 		}
+
+		.trip_heading {
+			padding-left: 25px;
+		}
 	</style>
 </head>
 <body>
@@ -183,7 +187,7 @@
 	<div class="wrap">
 		<div class="body">
 			<div class="text">
-				<h2>Here is your trip:</h2>
+				<h2 class="trip_heading">Here is your trip:</h2>
 
 				<div class="days">
 					<?php
