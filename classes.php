@@ -9,18 +9,14 @@
 			$this->indoorActivity = $indoorActivity;
 		}
 
-		/* public function count() {
-			return $this->count();
-		} */
-
 		public function add() {
-			$this->count += 1;
+			$this->count++;
 
 			return $this->name;
 		}
 
 		public static function compareCounts($one, $two) {
-			if ($one > $two) {
+			if ($two > $one) {
 				return true;
 			}
 

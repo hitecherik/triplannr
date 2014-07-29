@@ -1,0 +1,565 @@
+/*========================================================================
+							HEADER
+========================================================================*/
+.jumbotron
+{
+	background-image: url('../img/jumbo_img_1.png');
+	background-repeat: no-repeat;
+	width: 56.3em;
+	height: 37.5em;
+	margin: auto;
+}
+
+.header
+{
+	min-width: 43.125em;
+	min-height: 17.4375em;
+}
+
+.banner, .feature
+{
+	width: 43.125em;		/*width: 690px;*/
+	margin-right: 0.625em;
+}
+
+.info, .sidebar
+{
+ 	width: 24.6875em;			/*width: 395px;*/
+	margin-left: 1.5625em;
+}
+
+.banner
+{
+	background-repeat: no-repeat;
+	height: 17.4375em;	/*height: 279px;*/
+}
+
+#one{	background-image: url('../img/banner_img_1.jpg');}
+#two{	background-image: url('../img/banner_img_2.jpg');}
+
+.info
+{
+	background: black;
+	height: 17.4375em;	/*height: 279px;*/
+}
+
+.main
+{
+	margin-top: 2em;
+	overflow: hidden;
+}
+
+/*========================================================================
+						BODY STYLING
+========================================================================*/
+.banner, .info, .feature, .sidebar
+{
+	display: inline;
+	float: left;
+}
+
+body
+{
+	background: rgb(240, 240, 240);		/*background: #D1E0E0;*/
+}
+
+.wrap
+{
+	margin: auto;
+	width: 70em;
+	position: relative;
+}
+
+footer
+{
+	width: 70em;
+	position: relative;
+	background: #D1E0E0;
+	margin-top: 2em;
+	padding-bottom: 2em;
+	clear: both;
+}
+
+/*========================================================================
+							NAV BAR
+========================================================================*/
+
+/* Code adapted from "http://tbacoding.zapto.com" on Sat, 5th July 2014 */
+nav ul a
+{
+	color: rgb(100, 100, 100);
+	display: inline;
+	padding: 1em 1.56em;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 700;
+	text-transform: uppercase;
+	font-size: 0.89em;
+	position: relative;
+	-webkit-transition: color .25s;
+	-moz-transition: color .25s;
+	-ms-transition: color .25s;
+	-o-transition: color .25s;
+	transition: color .25s;
+}
+
+nav ul a:hover
+{
+	color: #333333;
+}
+
+nav ul a:hover:before
+{
+	width: 100%;
+}
+
+nav ul a:before, nav ul a:after
+{
+	content: '';
+ 	display: inline;
+ 	position: absolute;
+}
+
+nav ul a:before
+{
+	left: 0;
+	bottom: 0;
+	height: 0.19em;
+	width: 0;
+	background: #333333;
+	-webkit-transition: width .25s;
+	-moz-transition: width .25s;
+	-ms-transition: width .25s;
+	-o-transition: width .25s;
+	transition: width .25s;
+}
+
+nav ul a:after
+{
+	right: -0.19em;
+	top: 1.26em;
+	height: 0.4em;
+	width: 0.4em;
+	background: rgb(100, 100, 100);
+	opacity: .5;
+}
+
+nav ul li.last > a:after,
+nav ul li:last-child > a:after
+{
+	display: none;
+	padding-right: 0;
+}
+
+nav li
+{
+	list-style: none;
+	display: inline;	
+}
+
+nav li:nth-child(3)
+{
+	padding-right: 0;
+}
+
+nav ul
+{
+	position: absolute;
+	right: 0em;
+	top: -0.5em;
+}
+
+/*========================================================================
+							CONTENT
+========================================================================*/
+
+footer, .sidebar, .feature
+{
+	padding-top: 1em;
+	border-top: 0.07em solid #D1D1D1;
+}
+
+footer img
+{
+	position: absolute;
+	width: 3em;
+	margin-top: 1em;
+}
+
+footer p
+{
+	margin-right: 1.5em;
+	margin-top: 1.5em;
+	text-align: right;		/*text-align: center;*/
+}
+
+#FB_Icon
+{
+	margin-left: 1.5em;
+}
+
+#YT_Icon
+{
+	margin-left: 5.5em;
+}
+
+#T_Icon
+{
+	margin-left: 9.5em;
+}
+
+iframe{		border: none;	display:none;}
+
+/*========================================================================
+							TYPOGRAPHY
+========================================================================*/
+
+h1, h2, h3 ,h4, p, a, li, dd, dt
+{
+	font-family: Garamond;		/*font-family: Verdana, sans-serif;*/
+}
+
+/*h1{font-family: 'Seaside Resort'; color: rgb(234, 139, 59);}*/
+
+p, dd, dt, .article_list
+{
+	font-size: 1.44em; /*13px*/
+	line-height: 1.66em;	/*20px*/
+	color: #353535;
+}
+
+a 
+{
+	text-decoration: none;
+	color: #7E7E7E;
+}
+
+h2
+{
+	font-size: 2.44em;
+	line-height: 1.2em;
+	letter-spacing: -0.06em;
+}
+
+article h2, article h3
+{
+	margin-top: 0;		/*margin: 0 0 0 0;*/
+	margin-bottom: 0;
+	margin-right: 0;
+	margin-left: 0;
+	padding-left: 0.818em;
+}
+
+footer p
+{
+	font-size: 1em;
+}
+
+.continue a:visited
+{
+	color: #678080;
+}
+
+.sidebar h3
+{
+	margin-top: 0;
+}
+
+.button a:hover
+{
+	color: white;
+}
+
+.preview a:hover, footer a:hover, .continue:hover
+{
+	color: black;
+}
+
+/*========================================================================
+							ARTICLE
+========================================================================*/
+
+#post_info
+{
+	float: left;
+	display: inline;
+	width: 23.125em;
+}
+
+.body
+{
+	clear: both;
+	padding-top: 0.1em;
+	float: none;
+}
+
+.post_info
+{
+	color: #999;
+	padding: 0.188em 0 0 2em;
+	float: left;
+	font-size: 0.875em;
+}
+
+.post_info a
+{
+	color: #999;
+	text-decoration: none;
+}
+
+/*========================================================================
+						ARTICLE STYLING
+========================================================================*/
+
+.meta
+{
+	margin: 0 0 0.5em;
+	padding-left: 2em;
+}
+
+.meta a, .post_info a
+{
+	font-style: italic;
+}
+
+.meta li:after
+{
+	content: '\\';
+	padding: 0 0.125em;
+	color: #999;
+}
+
+.meta li:last-child:after
+{
+	content: none;
+	padding-right: 0;
+}
+
+.meta li
+{
+	display: inline;
+}
+
+article img
+{
+	float: left;
+	width: 13.125em;
+}
+
+.continue
+{
+	float: right;
+}
+
+.continue:before
+{
+	content: '(';
+}
+
+.continue:after
+{
+	content: ')';
+}
+
+/*========================================================================
+							FORM
+========================================================================*/
+
+.feature h4
+{
+	text-align: center;
+	font-family: Garamond;
+	margin: 0; 		/*text-shadow: 0 0.188em 0 #665;*/
+	font-size: 2em;		/*letter-spacing: -0.313em;*/
+}
+
+form li
+{
+	list-style: none;
+	margin-bottom: 1.25em;
+}
+
+form ul
+{
+	padding-left: 2em;
+}
+
+label
+{
+	display: block;
+	cursor: pointer;
+}
+
+textarea
+{
+	width: 25em;
+	height: 12.5em;
+}
+
+.left ul
+{
+	list-style: none;
+	padding-left: 1.875em;
+}
+
+/*========================================================================
+							TABLES
+========================================================================*/
+
+table
+{
+	display: table;
+	border-collapse: separate;
+	border-spacing: 0.4em;
+	border-color: gray;
+}
+
+tbody
+{
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+th, tr, td
+{
+	padding: 0.1em 0.5em;
+	vertical-align: middle;
+}
+
+td, th
+{
+	display: table-cell;
+
+}
+
+tr
+{
+	display: table-row;
+}
+
+td
+{
+	border: 1px solid #C1C1C2;
+	vertical-align: top;
+	height: 156px;
+	width: 156px;
+}
+
+td img
+{
+	height: 155px;
+	width: 155px;
+}
+
+table a
+{
+	
+}
+
+
+/*========================================================================
+						SLIDING PANEL
+========================================================================*/
+.pull-me
+{
+    -webkit-box-shadow: 0 0 0.5em #FFD700;
+    -moz-box-shadow: 0 0 0.5em #FFD700;
+    box-shadow: 0 0 0.5em #FFD700;
+    cursor: pointer;
+}
+
+.panel 
+{
+	background: #ffffbd;
+    background-size: 90% 90%;
+    height:18.75em;
+	display: none;
+}
+
+.panel p, .slide
+{
+    text-align: center;
+}
+.slide 
+{
+	margin: 0;
+	padding: 0;
+	border-top: solid 0.267em #cc0000;
+}
+
+.pull-me 
+{
+	display: block;
+    position: relative;
+    margin: auto;
+    /*right: -1.5em;*/
+    width: 9.4em;
+    height: 1.25em;
+    font-size: 1em;
+	color: #ffffff;
+    background: #cc0000;
+	text-decoration: none;
+    -moz-border-bottom-left-radius: 0.313em;
+    -moz-border-bottom-right-radius: 0.313em;
+    border-bottom-left-radius: 0.313em;
+    border-bottom-right-radius: 0.313em;
+}
+
+.pull-me p 
+{
+    text-align: center;
+}
+
+/*========================================================================
+							MISC
+========================================================================*/
+
+#button
+{
+	display: inline-block;
+	font-family: "Francois One", sans-serif;
+	text-transform: uppercase;
+	color: #373737 !important;
+	text-shadow: 1px 1px 0 #c7c7c7;
+	padding: 0 7px;
+	position: relative;
+	line-height: 22px;
+	font-size: 14px;
+	height: 22px;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border: 1px solid #fff;
+	background: url(img/button-bg2.png) repeat-x right 0 #959595;
+}
+
+
+blockquote
+{
+	border-left: 2px solid #D2D6D8;
+	margin: 0 0 0 1.6em;
+	padding: 0 0 0 1.6em;
+}
+
+.button
+{
+	background: #242324;		/*background-image: url('../img/button-bg2.png'); */
+	padding: 0.38em;
+	text-transform: uppercase;
+	font-size: 0.6em;
+	font-family: Arial;
+	position: relative;
+}
+
+/* http://sonspring.com/journal/clearing-floats */
+
+.clear {
+  clear: both;
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+/*========================================================================
+							END
+========================================================================*/

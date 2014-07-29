@@ -74,25 +74,25 @@
 		} else if ($precipitation < 50) {
 			array_push($day_activities, $indoorActivities[0]->add());
 
-			for ($i == 0; $i < 2; $i++) {
-				if (Activity::compareCounts($acitvities[0]->count, $activities[1]->count)) {
+			for ($i = 0; $i < 2; $i++) {
+				if (Activity::compareCounts($activities[0]->count, $activities[1]->count)) {
 					array_push($day_activities, $activities[0]->add());
 				} else {
 					array_push($day_activities, $activities[1]->add());
 				}
 			}
 		} else if ($precipitation < 75) {
-			for ($i == 0; $i < 2; $i++) {
+			for ($i = 0; $i < 2; $i++) {
 				array_push($day_activities, $indoorActivities[0]->add());
 			}
 
-			if (Activity::compareCounts($acitvities[0]->count, $activities[1]->count)) {
+			if (Activity::compareCounts($activities[0]->count, $activities[1]->count)) {
 				array_push($day_activities, $activities[0]->add());
 			} else {
 				array_push($day_activities, $activities[1]->add());
 			}
 		} else {
-			for ($i == 0; $i < 3; $i++) {
+			for ($i = 0; $i < 3; $i++) {
 				array_push($day_activities, $indoorActivities[0]->add());
 			}
 		}
@@ -100,16 +100,71 @@
 		array_push($trip_activities, $day_activities);
 	}
 ?>
-<!doctype html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>Temp Results</title>
+	<meta charset="UTF-8" />
+	<title>Triplannr | Results</title>
+	<link href="css/opensans.css" rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" href="css/stylesheet.css" />
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
+
+	<style>
+		.days {
+			display: flex;
+		}
+
+		.day {
+			padding: 0 25px;
+		}
+	</style>
 </head>
-
 <body>
-	<h1>Temp Results</h1>
+	<!-- <div class="wrap"> -->
+	<div class="jumbotron">
+		<nav>
+			<h1>Triplannr: Dynamic Holiday Planner</h1>
+			<ul>
+				<li class="active"><a href="#" ><span>Home</span></a></li>
+				<li><a href="#"><span>Holidays</span></a></li>
+				<li><a href="#"><span>Thanks</span></a></li>
+				<li class="last"><a href="#"><span>Ideas</span></a></li>
+			</ul>
+		</nav>
 
-	<?php $forecasts[1]->outputData($weather_params); ?>
+		
+	</div>
+	<div class="wrap">
+		<div class="body">
+			
+			<div class="text">
+				<h2>Here is your trip:</h2>
+
+				<div class="days">
+					<?php
+						$i = 0;
+						foreach ($trip_activities as $day_activities) {
+							$i++;
+
+							echo "<div class=\"day\"><h3>Day $i</h3><ol>";
+
+							foreach ($day_activities as $day_activity) {
+								echo "<li>$day_activity</li>";
+							}
+
+							echo "</ol></div>";
+						}
+					?>
+			 	</div>
+			</div>
+		</div>
+
+		<footer>
+			<a href="#"><img src="img/facebook.png" id="FB_Icon" /></a>
+			<a href="#"><img src="img/twitter.png" id="T_Icon" /></a>
+			<a href="http://www.youtube.com"><img src="img/youtube.png" id="YT_Icon" /></a>
+			<p>Copyright  | Last updated 28/07/2014 | Under <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International</a> license.</p>
+		</footer>
+	</div>
 </body>
 </html>
