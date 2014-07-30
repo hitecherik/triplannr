@@ -11,16 +11,16 @@
 		array_push($activities, new Activity("Museum", true));
 	}
 
-	if (isset($_REQUEST["beach"])) {
-		array_push($activities, new Activity("Beach"));
-	}
-
 	if (isset($_REQUEST["cafe"])) {
 		array_push($activities, new Activity("Cafe", true));
 	}
 
 	if (isset($_REQUEST["restaurant"])) {
 		array_push($activities, new Activity("Restaurant", true));
+	}
+
+	if (isset($_REQUEST["beach"])) {
+		array_push($activities, new Activity("Beach"));
 	}
 
 	if (isset($_REQUEST["walk"])) {
@@ -100,6 +100,50 @@
 		}
 
 		array_push($trip_activities, $day_activities);
+	}
+
+	// recomends activity
+	$museums = false;
+	$museums_i = 0;
+	$cafes = false;
+	$cafes_i = 0;
+	$restaurants = false;
+	$restaurants_i = 0;
+	$latlon = "{$weather_info->DV->Location['lat']},{$weather_info->DV->Location['lon']}";
+	foreach ($trip_activities as &$trip_activity) {
+		foreach ($trip_activity as &$day_activity) {
+			switch ($day_activity) {
+				case "Museum":
+					if ($museums == false) {
+						$museums = simplexml_load_file("https://maps.googleapis.com/maps/api/place/nearbysearch/xml?radius=5000&key={$google_api_key}&location={$latlon}&types=museum")->result;
+					}
+
+					$day_activity .= ": {$museums[$museums_i]->name}";
+					$museums_i++;
+
+					break;
+				
+				case "Cafe":
+					if ($cafes == false) {
+						$cafes = simplexml_load_file("https://maps.googleapis.com/maps/api/place/nearbysearch/xml?radius=5000&key={$google_api_key}&location={$latlon}&types=cafe")->result;
+					}
+
+					$day_activity .= ": {$cafes[$cafes_i]->name}";
+					$cafes_i++;
+
+					break;
+
+				case "Restaurant":
+					if ($restaurants == false) {
+						$restaurants = simplexml_load_file("https://maps.googleapis.com/maps/api/place/nearbysearch/xml?radius=5000&key={$google_api_key}&location={$latlon}&types=restaurant")->result;
+					}
+
+					$day_activity .= ": {$restaurants[$restaurants_i]->name}";
+					$restaurants_i++;
+
+					break;
+			}
+		}
 	}
 ?>
 <!doctype html>
