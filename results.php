@@ -3,16 +3,36 @@
 	include "classes.php";
 
 	// retrieve inputs
-	$place = ucwords($_REQUEST["place"]);
+	$place = ucwords($_REQUEST["destination"]);
 	$startAndEnd = [implode("-", array_reverse(explode("/", $_REQUEST["startDate"]))), implode("-", array_reverse(explode("/", $_REQUEST["endDate"])))];
 	$activities = array(); // set below
 
-	if (isset($_REQUEST["indoorActivity"])) {
+	if (isset($_REQUEST["museum"])) {
 		array_push($activities, new Activity("Museum", true));
 	}
 
-	if (isset($_REQUEST["outdoorActivity"])) {
+	if (isset($_REQUEST["beach"])) {
 		array_push($activities, new Activity("Beach"));
+	}
+
+	if (isset($_REQUEST["cafe"])) {
+		array_push($activities, new Activity("Cafe", true));
+	}
+
+	if (isset($_REQUEST["restaurant"])) {
+		array_push($activities, new Activity("Restaurant", true));
+	}
+
+	if (isset($_REQUEST["walk"])) {
+		array_push($activities, new Activity("Walk"));
+	}
+
+	if (isset($_REQUEST["indoor"])) {
+		array_push($activities, new Activity("Indoor Activity", true));
+	}
+
+	if (isset($_REQUEST["outdoor"])) {
+		array_push($activities, new Activity("Outdoor Activity"));
 	}
 
 	// doctors dates
@@ -91,34 +111,6 @@
 	<link rel="stylesheet" href="css/stylesheet.css" />
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
-
-	<style>
-		.days {
-			display: flex;
-		}
-
-		.day {
-			padding: 0 25px;
-		}
-		
-		.days {
-			margin-bottom: 2em;
-		}
-
-		a {
-			color: rgb(77, 77, 77);
-			border-bottom: 1px dotted currentColor;
-		}
-
-		td:first-child {
-			font-weight: bold;
-			padding-right: 10px;
-		}
-
-		.trip_heading {
-			padding-left: 25px;
-		}
-	</style>
 </head>
 <body>
 	<!-- <div class="wrap"> -->

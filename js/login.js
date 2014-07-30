@@ -1,4 +1,31 @@
-var main = function(){ 
+var main = function(){
+
+	// var box = $('#login'),
+	// 	$(window) = winD,
+	// 	winWidth = winD.width() / 2 - box.outerWidth() / 2;
+
+	// $(window).on('resize', function(){
+	// 	winWidth = winD.width() / 2 - box.outerWidth() / 2;
+	// 	box.css('left', minWidth);
+	// });
+
+
+	var options = $('nav div'),
+		hide = $('.hide');
+
+	$('#nav_show').on('click', function(){
+		if ( hide.is(':hidden'))
+		{
+			options.eq(1).slideToggle(400)
+								.removeClass('hide');
+		}
+		else if ( !(hide.is(':hidden')) )
+		{
+			options.eq(1).slideToggle(400)
+								.addClass('hide');
+		}
+	});
+ 
 	$('button[type="submit"]').on('click', validateForm);
 }
 
@@ -33,3 +60,5 @@ var validateForm = function(){
 }
 
 $(document).ready(main);
+
+
