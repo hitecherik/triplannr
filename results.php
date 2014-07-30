@@ -33,7 +33,7 @@
 	$result = mysql_query("SELECT * FROM `locations` WHERE `name` = \"$place\"");
 	$id = mysql_result($result, 0);
 
-	$weather_info = simplexml_load_file("http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/xml/$id?res=daily&key={$api_key}");
+	$weather_info = simplexml_load_file("http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/xml/$id?res=3hourly&key={$api_key}");
 
 	$weather_params = array();
 	$forecasts = array();
@@ -56,77 +56,26 @@
 	$trip_activities = array();
 
 	foreach ($forecasts as $day) {
+		$precipitations = [(int) $day->nine["Pp"], (int) $day->noon["Pp"], (int) $day->three["Pp"]];
+		$iteration = 0;
 		$day_activities = array();
-		$precipitation = (int) $day->day["PPd"];
 
-		Activity::compareCounts($activities);
-
-		if ($precipitation < 25) {
-			for ($i = 0; $i < 3; $i++) {
-				array_push($day_activities, $activities[0]->add());
-				Activity::compareCounts($activities);
-			}
-		} else if ($precipitation < 50) {
-			$limit = 2;
-
-			foreach ($activities as $activity) {
-				if ($activity->allowsPrecipitation) {
-					array_push($day_activities, $activity->add());
-					break;
-				}
-			}
-
-			if (count($day_activities) == 0) {
-				$limit = 3;
-			}
+		foreach ($precipitations as $precipitation) {
+			$iteration++;
 
 			Activity::compareCounts($activities);
-
-			for ($i = 0; $i < $limit; $i++) {
-				array_push($day_activities, $activities[$i]->add());
-			}
-		} else if ($precipitation < 75) {
-			$i = 0;
-			$limit = 1;
-
-			foreach ($activities as $activity) {
-				if ($activity->allowsPrecipitation) {
-					$i++;
-					array_push($day_activities, $activity->add());
-				}
-
-				if ($i == 2) {
-					break;
+			
+			if ($precipitation > 40) {
+				foreach ($activities as $activity) {
+					if ($activity->allowsPrecipitation) {
+						array_push($day_activities, $activity->add());
+						break;
+					}
 				}
 			}
 
-			if ($i != 2) {
-				$limit = 3 - $i;
-			}
-
-			for ($i = 0; $i < $limit; $i++) {
-				Activity::compareCounts($activities);
-				array_push($day_activities, $activities[$i]->add());
-			}
-		} else {
-			$i = 0;
-
-			foreach ($activities as $activity) {
-				if ($activity->allowsPrecipitation) {
-					$i++;
-					array_push($day_activities, $activity->add());
-				}
-
-				if ($i == 3) {
-					break;
-				}
-			}
-
-			if ($i != 3) {
-				for ($j = 0; $j < 3 - $i; $j++) {
-					Activity::compareCounts($activities);
-					array_push($day_activities, $activities[$j]->add());
-				}
+			if ($precipitation < 41 || count($day_activities) == $iteration - 1) {
+				array_push($day_activities, $activities[0]->add());
 			}
 		}
 
