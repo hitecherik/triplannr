@@ -118,7 +118,7 @@
 						$museums = simplexml_load_file("https://maps.googleapis.com/maps/api/place/nearbysearch/xml?radius=5000&key={$google_api_key}&location={$latlon}&types=museum")->result;
 					}
 
-					$day_activity .= ": {$museums[$museums_i]->name}";
+					$day_activity = "<em>$day_activity:</em> {$museums[$museums_i]->name}";
 					$museums_i++;
 
 					break;
@@ -128,7 +128,7 @@
 						$cafes = simplexml_load_file("https://maps.googleapis.com/maps/api/place/nearbysearch/xml?radius=5000&key={$google_api_key}&location={$latlon}&types=cafe")->result;
 					}
 
-					$day_activity .= ": {$cafes[$cafes_i]->name}";
+					$day_activity = "<em>$day_activity:</em> {$cafes[$cafes_i]->name}";
 					$cafes_i++;
 
 					break;
@@ -138,7 +138,7 @@
 						$restaurants = simplexml_load_file("https://maps.googleapis.com/maps/api/place/nearbysearch/xml?radius=5000&key={$google_api_key}&location={$latlon}&types=restaurant")->result;
 					}
 
-					$day_activity .= ": {$restaurants[$restaurants_i]->name}";
+					$day_activity = "<em>$day_activity:</em> {$restaurants[$restaurants_i]->name}";
 					$restaurants_i++;
 
 					break;
@@ -150,13 +150,13 @@
 <html>
 <head>
 	<meta charset="UTF-8" />
-	<title>Triplannr | Results</title>
+	<title>triplannr :: Results</title>
 	<link href="css/opensans.css" rel='stylesheet' type='text/css' />
 	<link rel="stylesheet" href="css/stylesheet.css" />
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
 </head>
-<body>
+<body id="results_page">
 	<!-- <div class="wrap"> -->
 	<div class="jumbotron">
 		<nav>
@@ -174,24 +174,29 @@
 			<div class="text">
 				<h2 class="trip_heading">Here is your trip:</h2>
 
-				<div class="days">
+				<div class="days grid">
 					<?php
 						$i = 0;
 						$times = array("9am", "Noon", "3pm");
-						foreach ($trip_activities as $day_activities) {
-							$i++;
-							$j = 0;
-
-							echo "<div class=\"day\"><h3>Day $i</h3><table>";
-
-							foreach ($day_activities as $day_activity) {
-								echo "<tr><td>{$times[$j]}</td><td>$day_activity</td></tr>";
-								$j++;
-							}
-
-							echo "</table></div>";
-						}
+						$columns = count($trip_activities);
 					?>
+					<div class="row_<?php echo $columns; ?>">
+						<?php
+							foreach ($trip_activities as $day_activities) {
+								$i++;
+								$j = 0;
+
+								echo "<div class=\"day column_1\"><h3>Day $i</h3><table>";
+
+								foreach ($day_activities as $day_activity) {
+									echo "<tr><td>{$times[$j]}</td><td>$day_activity</td></tr>";
+									$j++;
+								}
+
+								echo "</table></div>";
+							}
+						?>
+					</div>
 			 	</div>
 			</div>
 		</div>
@@ -200,7 +205,7 @@
 			<a href="#"><img src="img/facebook.png" id="FB_Icon" /></a>
 			<a href="#"><img src="img/twitter.png" id="T_Icon" /></a>
 			<a href="http://www.youtube.com"><img src="img/youtube.png" id="YT_Icon" /></a>
-			<p>Copyright &copy; Alex Nielsen, Sophie Speed, Ollie Cole and Carl Ntifo 2014 under <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution 4.0 International Licence</a>.</p>
+			<p>Copyright &copy; Alex Nielsen, Sophie Speed, Ollie Cole and Carl Ntifo 2014 under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International Licence</a>.</p>
 		</footer>
 	</div>
 </body>

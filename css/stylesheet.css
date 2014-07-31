@@ -50,18 +50,21 @@ body, html
 #user_page .jumbotron
 {
 	background-image: url('../img/jumbo_3.jpg');
-	color: black;
+}
+
+#results_page .jumbotron {
+	background-image: url("../img/jumbo_2.jpg");
+}
+
+#index_page .jumbotron {
+	background-position: 0;
 }
 
 .jumbotron
 {
-	background-image: url('../img/jumbo_2.jpg');
 	background-size: cover;
+	background-image: url('../img/jumbo_1.jpg');
 	width: 100%;
-	/*height: 100%;
-	min-height: 36.4em;*/
-	min-height: 100%;
-	height: auto;
 	overflow: hidden;
 	margin-bottom: 1em;
 	position: relative;
@@ -87,7 +90,7 @@ body, html
 	margin: 2em 4em;
 	padding: 1em;
 	background: rgba(255, 120, 0, 0.7);
-	cursor: hand;
+	cursor: pointer;
 }
 
 .wrap_1
@@ -105,12 +108,6 @@ body, html
 	margin-top: 1em;
 }
 
-.intro_1, .intro_2, .box_1, .box_2, .text
-{
-	float: left;
-	display: inline;
-}
-
 /*========================================================================
 							FORM
 ========================================================================*/
@@ -122,11 +119,6 @@ body, html
 	margin-top: 5em;
 	width: 50%;
 	margin-left: 3%;
-}
-
-.box_1, .box_2
-{
-	height: 10em;
 }
 
 input
@@ -199,6 +191,10 @@ h1
 {
 	margin-left: 1em;
 	float: left;
+}
+
+#index_page h1 {
+	color: black;
 }
 
 
@@ -311,14 +307,14 @@ nav #nav_show
 }
 
 
-#user_page nav a
+#results_page nav a
 {
-	color: black;
+	color: white;
 }
 
- nav a
- {
-	color: #E3E3E3;
+nav a
+{
+	color: black;
 	font-weight: bold;
 }
 
@@ -450,18 +446,14 @@ input[id=museum]:checked + label[for=museum]:after, input[id=restaurant]:checked
 }
 
 .days {
-	display: flex;
-}
-
-.day {
-	padding: 0 25px;
-}
-
-.days {
 	margin-bottom: 2em;
 }
 
-a {
+.day {
+	box-sizing: border-box;
+}
+
+footer a {
 	color: rgb(77, 77, 77);
 	border-bottom: 1px dotted currentColor;
 }
@@ -473,6 +465,16 @@ td:first-child {
 
 .trip_heading {
 	padding-left: 25px;
+}
+
+.button_container {
+	margin-top: 0 !important;
+	padding-top: 0 !important;
+	text-align: center;
+}
+
+.text {
+	margin-left: 1em;
 }
 
 /*========================================================================
@@ -494,19 +496,7 @@ td:first-child {
 /* Rows 5 */
 .grid .row_5 .column_1 
 {
-    width: 18.66%;
-}
-.grid .row_5 .column_2 
-{
-    width: 38.66%;
-}
-.grid .row_5 .column_3 
-{
-    width: 58.66%;
-}
-.grid .row_5 .column_4 
-{
-    width: 78.67%;
+    width: 16%;
 }
 
 /* Rows 6 */
@@ -550,10 +540,6 @@ td:first-child {
 }
 
 /* Rows 8 */
-.grid .row_8 .column_1 
-{
-    width: 11.16%;
-}
 .grid .row_8 .column_3 
 {
     width: 36.17%;
@@ -562,31 +548,15 @@ td:first-child {
 {
     width: 61.16%;
 }
-.grid .row_8 .column_6 
-{
-    width: 73.67%;
-}
-.grid .row_8 .column_7 
-{
-    width: 86.17%;
-}
 
-/* Full Rows */
-.grid .row_2 .column_2, .grid .row_3 .column_3,
-	.grid .row_4 .column_4, .grid .row_5 .column_5,
-	.grid .row_6 .column_6, .grid .row_7 .column_7,
-	.grid .row_8 .column_8 
-	{
+.grid .row_2 .column_2
+{
     width: 96%;/* 98.6666666666666666666666666666666666666666666666%;*/
 }
 
 /* Standard */
-.grid .column_1, .grid .column_2,
-	.grid .column_3, .grid .column_4,
-	.grid .column_5, .grid .column_6,
-	.grid .column_7, .grid .column_8 
-   
-   {
+.grid .column_1, .grid .column_2, .grid .column_3, .grid .column_5   
+{
     margin: 2%; /*0.6666666666666666666666666666666666666666666666%;*/
     padding: 5px;
     -webkit-box-sizing: border-box;
@@ -597,33 +567,30 @@ td:first-child {
 
 /* Half Rows */
 
-.grid .row_2 .column_1, .grid .row_4 .column_2,
-	.grid .row_6 .column_3, .grid .row_8 .column_4 
-	{
-    width: 46%; /*48.66%;*/
+.grid .row_2 .column_1
+{
+    width: 46%;
 }
 
 /* Quarter Rows */
 
-.grid .row_4 .column_1, .grid .row_8 .column_2 
+.grid .row_4 .column_1
 {
-    width: 23.66%;
+    width: 21%;
 }
 
 /* Third Rows */
-.grid .row_3 .column_1, .grid .row_6 .column_2 
+.grid .row_3 .column_1
 {
-    width: 32%;
+    width: 29.33%;
 }
 
 @media all and (max-width: 637px) {
-
-    .grid .column_1, .grid .column_2,
-    	.grid .column_3, .grid .column_4, 
-    	.grid .column_5, .grid .column_6,
-    	.grid .column_7, .grid .column_8 
-    	{
-        width: 96% !important;
+    .grid .column_1, .grid .column_2, .grid .column_3, .grid .column_5 
+    {
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
     }
 }
 
@@ -632,13 +599,17 @@ td:first-child {
 	{
 		width: 100%;
 		margin-left: 0;
+		padding: 0 5px;
+		box-sizing: border-box;
 	}
-	.options
-	{
+	.options {
 		width: 100%;
 		margin-right: 0;
+		padding: 0 5px;
+		box-sizing: border-box;
 	}
 }
+
 
 @media all and (max-width: 810px) {
 	nav h1, nav ul {
