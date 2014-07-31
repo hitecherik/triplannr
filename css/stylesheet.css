@@ -47,9 +47,15 @@ body, html
     margin: 0;
 }
 
-#user_page .jumbotron
+#signup_page, #signup_page body, #login_page, #login_page body {
+	height: 100%;
+}
+
+#signup_page .jumbotron, #login_page .jumbotron
 {
 	background-image: url('../img/jumbo_3.jpg');
+	margin: 0;
+	height: 100%;
 }
 
 #results_page .jumbotron {
@@ -84,7 +90,7 @@ body, html
 	margin-left: 0;
 }
 
- .button
+.button
  {
 	float: left;
 	margin: 2em 4em;
@@ -133,7 +139,7 @@ input
 	border-bottom: 0.063em dotted #e3e3e3;
 }
 
-input[type="text"] {
+input[type="text"], input[type="password"] {
 	width: 6.4em;
 }
 
@@ -176,11 +182,6 @@ body
 	margin: 0;
 }
 
-#user_page
-{
-	background: black;
-}
-
 a
 {
 	color: #C5C5C5;
@@ -191,10 +192,11 @@ h1
 {
 	margin-left: 1em;
 	float: left;
+	color: black;
 }
 
-#index_page h1 {
-	color: black;
+#results_page h1 {
+	color: white;
 }
 
 
@@ -212,21 +214,15 @@ nav
 	overflow: hidden;
 }
 
-#login
+.user_form
 {
 	clear: both;
-	margin: 16em;
-	/*min-width: 398px;*/
+	margin-top: 5em;
 }
 
-#login p
+.user_form p
 {
 	text-align: center;
-}
-
-#login .button
-{
-	margin: 1em 50%;
 }
 
 button[type=submit].button
@@ -327,6 +323,11 @@ nav a
 							FOOTER
 ========================================================================*/
 
+html:not(#signup_page)
+{
+	background: #D1E0E0;
+}
+
 footer
 {
 	width: auto;
@@ -334,7 +335,7 @@ footer
 	min-height: 4em;
 	position: relative;
 	background: #D1E0E0;
-	margin-top: 5em;
+	margin-top: 2em;
 	padding-bottom: 2em;
 	clear: both;
 	overflow: hidden;
@@ -475,6 +476,7 @@ td:first-child {
 
 .text {
 	margin-left: 1em;
+	background: rgb(245, 245, 245);
 }
 
 /*========================================================================
@@ -611,7 +613,7 @@ td:first-child {
 }
 
 
-@media all and (max-width: 810px) {
+@media all and (max-width: 970px) {
 	nav h1, nav ul {
 		float: none;
 		text-align: center;

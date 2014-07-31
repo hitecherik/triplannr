@@ -5,6 +5,7 @@
 	// retrieve inputs
 	$place = ucwords($_REQUEST["destination"]);
 	$startAndEnd = [implode("-", array_reverse(explode("/", $_REQUEST["startDate"]))), implode("-", array_reverse(explode("/", $_REQUEST["endDate"])))];
+	$postcode = str_replace(" ", "", $_REQUEST["postcode"]);
 	$activities = array(); // set below
 
 	if (isset($_REQUEST["museum"])) {
@@ -102,6 +103,9 @@
 		array_push($trip_activities, $day_activities);
 	}
 
+	// finds the latitude and longitude of the current location
+	$postcode_data = simplexml_load_file("http://www.uk-postcodes.com/postcode/$postcode.xml")->geo;
+
 	// recomends activity
 	$museums = false;
 	$museums_i = 0;
@@ -109,7 +113,7 @@
 	$cafes_i = 0;
 	$restaurants = false;
 	$restaurants_i = 0;
-	$latlon = "{$weather_info->DV->Location['lat']},{$weather_info->DV->Location['lon']}";
+	$latlon = "{$postcode_data->lat},{$postcode_data->lng}";
 	foreach ($trip_activities as &$trip_activity) {
 		foreach ($trip_activity as &$day_activity) {
 			switch ($day_activity) {
@@ -153,52 +157,55 @@
 	<title>triplannr :: Results</title>
 	<link href="css/opensans.css" rel='stylesheet' type='text/css' />
 	<link rel="stylesheet" href="css/stylesheet.css" />
+	<link rel="icon" href="img/logo.png">
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
 </head>
 <body id="results_page">
-	<!-- <div class="wrap"> -->
 	<div class="jumbotron">
 		<nav>
-			<h1>Triplannr: Dynamic Holiday Planner</h1>
+			<h1>triplannr: <small>Dynamic Trip Planner</small></h1>
 			<ul>
-				<li class="active"><a href="#" ><span>Home</span></a></li>
-				<li><a href="#"><span>Holidays</span></a></li>
-				<li><a href="#"><span>Thanks</span></a></li>
-				<li class="last"><a href="#"><span>Ideas</span></a></li>
+				<li><a href="index.php"><span>Home</span></a></li>
+				<li><a href="results.php"><span>Last trip</span></a></li>
+				<?php if ($_COOKIE["user"]) { ?>
+					<li><a href="index.php?logout=1"><span>Log out</span></a></li>
+				<?php } else { ?>
+					<li><a href="login-page.php"><span>Login</span></a></li>
+					<li><a href="signup.php"><span>Sign up</span></a></li>
+				<?php } ?>
+				<li><a href="thanks.html"><span>Thanks</span></a></li>
 			</ul>
 		</nav>
 	</div>
 	<div class="wrap">
-		<div class="body">
-			<div class="text">
-				<h2 class="trip_heading">Here is your trip:</h2>
+		<div class="text clearfix">
+			<h2 class="trip_heading">Here is your trip:</h2>
 
-				<div class="days grid">
+			<div class="days grid">
+				<?php
+					$i = 0;
+					$times = array("9am", "Noon", "3pm");
+					$columns = count($trip_activities);
+				?>
+				<div class="row_<?php echo $columns; ?>">
 					<?php
-						$i = 0;
-						$times = array("9am", "Noon", "3pm");
-						$columns = count($trip_activities);
-					?>
-					<div class="row_<?php echo $columns; ?>">
-						<?php
-							foreach ($trip_activities as $day_activities) {
-								$i++;
-								$j = 0;
+						foreach ($trip_activities as $day_activities) {
+							$i++;
+							$j = 0;
 
-								echo "<div class=\"day column_1\"><h3>Day $i</h3><table>";
+							echo "<div class=\"day column_1\"><h3>Day $i</h3><table>";
 
-								foreach ($day_activities as $day_activity) {
-									echo "<tr><td>{$times[$j]}</td><td>$day_activity</td></tr>";
-									$j++;
-								}
-
-								echo "</table></div>";
+							foreach ($day_activities as $day_activity) {
+								echo "<tr><td>{$times[$j]}</td><td>$day_activity</td></tr>";
+								$j++;
 							}
-						?>
-					</div>
-			 	</div>
-			</div>
+
+							echo "</table></div>";
+						}
+					?>
+				</div>
+		 	</div>
 		</div>
 
 		<footer>

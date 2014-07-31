@@ -1,8 +1,18 @@
 <?php
+	session_start();
+
 	if (strlen(strstr($_SERVER['HTTP_USER_AGENT'], 'Firefox')) > 0) {
 	    $className = "firefox";
 	} else {
 		$className = "no-firefox";
+	}
+	
+	if (isset($_GET['logout'])) {
+		if ($_GET['logout'] == '1') {
+			session_destroy();
+			setcookie('user', null, -1, '/');
+			header('Location: http://triplannr.tk');
+		}
 	}
 ?>
 <!doctype html>
@@ -13,6 +23,7 @@
 	<title>triplannr</title>
 	<link href="css/opensans.css" rel='stylesheet' type='text/css' />
 	<link rel="stylesheet" href="css/stylesheet.css" />
+	<link rel="icon" href="img/logo.png">
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
 	<script type="text/javascript" src="js/smoothscroll.js"></script>
@@ -20,12 +31,17 @@
 <body class="<?php echo $className; ?>" id="index_page">
 	<div class="jumbotron">
 		<nav>
-			<h1>Dynamic Trip Planner</h1>
+			<h1>triplannr: <small>Dynamic Trip Planner</small></h1>
 			<ul>
-				<li class="active"><a href="#" ><span>Home</span></a></li>
-				<li><a href="#"><span>Holidays</span></a></li>
-				<li><a href="login.html"><span>Login</span></a></li>
-				<li class="last"><a href="#"><span>Thanks</span></a></li>
+				<li><a href="index.php"><span>Home</span></a></li>
+				<li><a href="results.php"><span>Last trip</span></a></li>
+				<?php if ($_COOKIE["user"]) { ?>
+					<li><a href="index.php?logout=1"><span>Log out</span></a></li>
+				<?php } else { ?>
+					<li><a href="login-page.php"><span>Login</span></a></li>
+					<li><a href="signup.php"><span>Sign up</span></a></li>
+				<?php } ?>
+				<li><a href="thanks.html"><span>Thanks</span></a></li>
 			</ul>
 		</nav>
         <form action="results.php" method="post">
@@ -34,7 +50,7 @@
 					<div id="travel" class="column_5">
 						<p>
 							I am going to <input type="text" name="destination" id="destination" placeholder="Plymouth" /> from
-							<input type="text" name="startDate" id="startDate" placeholder="28/07/2014" /> to <input type="text" name="endDate" id="endDate" placeholder="30/07/2014" /> and I'm staying at <input type="text" name="postcode" id="postcode" placeholder="CR5 1ES" /> <small>(postcode)</small>.
+							<input type="text" name="startDate" id="startDate" placeholder="28/07/2014" /> to <input type="text" name="endDate" id="endDate" placeholder="30/07/2014" /> and I'm staying at <input type="text" name="postcode" id="postcode" placeholder="PL4 8AA" /> <small>(postcode)</small>.
 						</p>
 					</div>
 					<div class="options column_3">		
