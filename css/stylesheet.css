@@ -1,0 +1,623 @@
+/*========================================================================
+							INTRO
+========================================================================*/
+ .instructions
+ {
+	display: none;
+	height: 20em;
+	background: green;
+}
+
+.close
+{
+	position: absolute;
+	right: 1em;
+	top: 1em;
+	font-weight: bold;
+	font-family: sans-serif;
+	cursor: pointer;
+}
+
+.wrap_2
+{
+	margin: auto;
+	width: 45em;
+	height: 20em;
+	background: red;
+}
+
+.intro_1
+{
+	width: 20em;
+	margin-right: 3em;
+}
+
+.intro_2
+{
+	width: 20em;
+	margin-right: 2em;
+}
+
+/*========================================================================
+							HEADER
+========================================================================*/
+body, html 
+{
+    padding: 0;
+    margin: 0;
+}
+
+#user_page .jumbotron
+{
+	background-image: url('../img/jumbo_3.jpg');
+}
+
+#results_page .jumbotron {
+	background-image: url("../img/jumbo_2.jpg");
+}
+
+#index_page .jumbotron {
+	background-position: 0;
+}
+
+.jumbotron
+{
+	background-size: cover;
+	background-image: url('../img/jumbo_1.jpg');
+	width: 100%;
+	overflow: hidden;
+	margin-bottom: 1em;
+	position: relative;
+	color: #E3E3E3;
+}
+
+.options
+{
+	font-size: 1.5em;
+	color: rgb(255, 120, 0);
+	text-align: left;
+	/*background: rgba(230, 230, 230, 0.2);*/
+	background: rgba(51, 51, 51, 0.3);
+	float: right;
+	margin: 2em 4em;
+	padding: 1em;
+	margin-left: 0;
+}
+
+ .button
+ {
+	float: left;
+	margin: 2em 4em;
+	padding: 1em;
+	background: rgba(255, 120, 0, 0.7);
+	cursor: pointer;
+}
+
+.wrap_1
+{
+	clear: both;
+	overflow: hidden;
+}
+/*========================================================================
+							Body Styling
+========================================================================*/
+.wrap
+{
+	margin: auto;
+	width: auto;
+	margin-top: 1em;
+}
+
+/*========================================================================
+							FORM
+========================================================================*/
+#travel
+{
+	text-align: center;
+	clear: both;
+	float: left;
+	margin-top: 5em;
+	width: 50%;
+	margin-left: 3%;
+}
+
+input
+{
+	font-family: "Open Sans", sans-serif;
+	color: white;
+	border: none;
+	background: transparent;
+	font-size: 1em;
+	resize: horizontal;
+	outline: none;
+	border-bottom: 0.063em dotted #e3e3e3;
+}
+
+input[type="text"] {
+	width: 6.4em;
+}
+
+input[name="postcode"]
+{
+	width: 4.7em;
+}
+
+*::-webkit-input-placeholder
+{   color: #c5c5c5;}
+*:-moz-placeholder
+{   color: #c5c5c5;}
+*::-moz-placeholder
+{   color: #c5c5c5;}
+*:-ms-input-placeholder
+{   color: #c5c5c5;}
+
+input[type="checkbox"]
+{
+	margin: 0 0 0 0;
+}
+
+input[name="destination"]
+{
+	width: 7em;
+}
+
+button
+{
+	margin-left: 3.125em;
+}
+
+/*========================================================================
+							TYPOGRAPHY
+========================================================================*/
+body
+{
+	font-family: 'Open Sans', sans-serif;
+	background: rgb(250, 250, 250);
+	margin: 0;
+}
+
+#user_page
+{
+	background: black;
+}
+
+a
+{
+	color: #C5C5C5;
+	text-decoration: none;
+}
+
+h1
+{
+	margin-left: 1em;
+	float: left;
+}
+
+#index_page h1 {
+	color: black;
+}
+
+
+form p
+{
+	font-size: 2em;
+	line-height: 1em;
+	margin: 0 0 0 0;
+	color: rgb(255, 120, 0);
+	background: rgba(51, 51, 51, 0.3);
+}
+
+nav
+{
+	overflow: hidden;
+}
+
+#login
+{
+	clear: both;
+	margin: 16em;
+	/*min-width: 398px;*/
+}
+
+#login p
+{
+	text-align: center;
+}
+
+#login .button
+{
+	margin: 1em 50%;
+}
+
+button[type=submit].button
+{
+	width: 7em;
+}
+
+#login p:nth-child(2)
+{
+	border-bottom: 1px dotted black;
+}
+
+#login input[type="text"], #login input[type="password"]
+{
+	color: white;
+}
+
+form span
+{
+	/*color: rgb(120, 0, 255);*/
+	font-weight: bold;
+	text-decoration: underline;
+}
+/*========================================================================
+							NAV
+========================================================================*/
+nav ul
+{
+	margin: 0;
+	font-size: 1.5em;
+	margin-right: 1em;
+	float: right;
+	margin-top: 0.83em;
+}
+
+nav ul a
+{
+	text-decoration: none;
+}
+
+.hide
+{
+	display: none;
+}
+
+nav .dropdown li, nav .dropdown 
+{
+	display: block !important;	
+}
+
+.dropdown li
+{
+	padding-top: 0.5em;
+	width: 100%;
+	text-align: center;
+	background: rgba( 230, 230, 230, 0.3);
+	/*background: rgba(255, 120, 0, 0.7);*/
+}
+
+.dropdown ul
+{
+	margin: 1em 1em 1em 2em;
+}
+
+nav li 
+{
+	display: inline;
+	margin: 0;
+	padding: 0;
+	padding-right: 1em;
+}
+
+nav #nav_show 
+{
+	display: none;
+	float: right;
+	width: ;
+}
+
+
+#results_page nav a
+{
+	color: white;
+}
+
+nav a
+{
+	color: black;
+	font-weight: bold;
+}
+
+ nav a:hover
+ {
+	color: rgb( 200, 200, 200);
+}
+
+/*========================================================================
+							FOOTER
+========================================================================*/
+
+footer
+{
+	width: auto;
+	height: auto;
+	min-height: 4em;
+	position: relative;
+	background: #D1E0E0;
+	margin-top: 5em;
+	padding-bottom: 2em;
+	clear: both;
+	overflow: hidden;
+}
+
+footer img
+{
+	float: left;
+	width: 3em;
+	margin-top: 1.7em;
+}
+
+footer p
+{
+	margin-right: 1.5em;
+	margin-top: 2.5em;
+	text-align: right;
+}
+
+.no-firefox input[type="checkbox"] 
+{
+	display: none;
+}
+
+button[type="submit"] 
+{
+	border: none;
+	float: none;
+	color: white;
+	margin: 0;
+	margin-top: 2em;
+}
+
+label 
+{
+	cursor: pointer;
+	margin: 10%;
+	position: relative;
+}
+
+.no-firefox label:before 
+{
+	content: '';
+	display: block;
+	width: 20px;
+	height: 20px;
+	border-radius: 3px;
+	border: solid 1px #E3E3E3;
+	float: left;
+	margin-top: 5px;
+	position: absolute;
+	right: 100%;
+	margin-right: 10px;
+}
+
+.no-firefox label:after 
+{
+	content: '';
+	display: none;
+	width: 16px;
+	height: 16px;
+	border-radius: 3px;
+	background: #E3E3E3;
+	float: left;
+	margin-top: 8px;
+	position: absolute;
+	right: 100%;
+	margin-right: 13px;
+	top: 0;
+}
+
+input[id=museum]:checked + label[for=museum]:after, input[id=restaurant]:checked + label[for=restaurant]:after,
+ 	input[id=beach]:checked + label[for=beach]:after, input[id=cafe]:checked + label[for=cafe]:after,
+  	input[id=walk]:checked + label[for=walk]:after, input[id=outdoor]:checked + label[for=outdoor]:after, 
+  	input[id=indoor]:checked + label[for=indoor]:after 
+  	{
+	display: block;
+}
+
+#FB_Icon
+{
+	margin-left: 1.5em;
+}
+
+#YT_Icon
+{
+	margin-left: 1.5em;
+}
+
+#T_Icon
+{
+	margin-left: 1.5em;
+}
+
+/*========================================================================
+							MISC
+========================================================================*/
+
+/* http://sonspring.com/journal/clearing-floats */
+
+.clear 
+{
+  clear: both;
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+.days {
+	margin-bottom: 2em;
+}
+
+.day {
+	box-sizing: border-box;
+}
+
+footer a {
+	color: rgb(77, 77, 77);
+	border-bottom: 1px dotted currentColor;
+}
+
+td:first-child {
+	font-weight: bold;
+	padding-right: 10px;
+}
+
+.trip_heading {
+	padding-left: 25px;
+}
+
+.button_container {
+	margin-top: 0 !important;
+	padding-top: 0 !important;
+	text-align: center;
+}
+
+.text {
+	margin-left: 1em;
+}
+
+/*========================================================================
+							GRID
+========================================================================*/
+
+/* Rows 3 */
+.grid .row_3 .column_2 
+{
+    width: 65.33%;
+}
+
+/* Rows 4 */
+.grid .row_4 .column_3 
+{
+    width: 73.66%;
+}
+
+/* Rows 5 */
+.grid .row_5 .column_1 
+{
+    width: 16%;
+}
+
+/* Rows 6 */
+.grid .row_6 .column_1 
+{
+    width: 15.33%;
+}
+.grid .row_6 .column_4 
+{
+    width: 65.33%;
+}
+.grid .row_6 .column_5 
+{
+    width: 82%;
+}
+
+/* Rows 7 */
+.grid .row_7 .column_1 
+{
+    width: 12.94%;
+}
+.grid .row_7 .column_2 
+{
+    width: 27.24%;
+}
+.grid .row_7 .column_3 
+{
+    width: 41.52%;
+}
+.grid .row_7 .column_4 
+{
+    width: 55.81%;
+}
+.grid .row_7 .column_5 
+{
+    width: 70.09%;
+}
+.grid .row_7 .column_6 
+{
+    width: 84.39%;
+}
+
+/* Rows 8 */
+.grid .row_8 .column_3 
+{
+    width: 36.17%;
+}
+.grid .row_8 .column_5 
+{
+    width: 61.16%;
+}
+
+.grid .row_2 .column_2
+{
+    width: 96%;/* 98.6666666666666666666666666666666666666666666666%;*/
+}
+
+/* Standard */
+.grid .column_1, .grid .column_2, .grid .column_3, .grid .column_5   
+{
+    margin: 2%; /*0.6666666666666666666666666666666666666666666666%;*/
+    padding: 5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    float: left;
+}
+
+/* Half Rows */
+
+.grid .row_2 .column_1
+{
+    width: 46%;
+}
+
+/* Quarter Rows */
+
+.grid .row_4 .column_1
+{
+    width: 21%;
+}
+
+/* Third Rows */
+.grid .row_3 .column_1
+{
+    width: 29.33%;
+}
+
+@media all and (max-width: 637px) {
+    .grid .column_1, .grid .column_2, .grid .column_3, .grid .column_5 
+    {
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+}
+
+@media all and (max-width: 1030px) {
+	#travel
+	{
+		width: 100%;
+		margin-left: 0;
+		padding: 0 5px;
+		box-sizing: border-box;
+	}
+	.options {
+		width: 100%;
+		margin-right: 0;
+		padding: 0 5px;
+		box-sizing: border-box;
+	}
+}
+
+
+@media all and (max-width: 810px) {
+	nav h1, nav ul {
+		float: none;
+		text-align: center;
+	}
+
+	nav ul {
+		padding-left: 1em;
+	}
+}
