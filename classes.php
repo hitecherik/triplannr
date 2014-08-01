@@ -45,6 +45,7 @@
 		public $nine = array();
 		public $noon = array();
 		public $three = array();
+		public $avgTemp = 0;
 
 		function __construct($period) {
 			$this->date = substr($period["value"], 0, -1);
@@ -70,5 +71,7 @@
 						break;
 				}
 			}
+
+			$this->avgTemp = round(((int) $this->nine["T"] + (int) $this->noon["T"] + (int) $this->three["T"]) / 3, 1);
 		}
 	}

@@ -263,30 +263,6 @@ nav ul a
 	text-decoration: none;
 }
 
-.hide
-{
-	display: none;
-}
-
-nav .dropdown li, nav .dropdown 
-{
-	display: block !important;	
-}
-
-.dropdown li
-{
-	padding-top: 0.5em;
-	width: 100%;
-	text-align: center;
-	background: rgba( 230, 230, 230, 0.3);
-	/*background: rgba(255, 120, 0, 0.7);*/
-}
-
-.dropdown ul
-{
-	margin: 1em 1em 1em 2em;
-}
-
 nav li 
 {
 	display: inline;
@@ -294,14 +270,6 @@ nav li
 	padding: 0;
 	padding-right: 1em;
 }
-
-nav #nav_show 
-{
-	display: none;
-	float: right;
-	width: ;
-}
-
 
 #results_page nav a
 {
@@ -314,9 +282,9 @@ nav a
 	font-weight: bold;
 }
 
- nav a:hover
- {
-	color: rgb( 200, 200, 200);
+nav a:hover
+{
+	opacity: 0.7;
 }
 
 /*========================================================================
@@ -454,7 +422,24 @@ input[id=museum]:checked + label[for=museum]:after, input[id=restaurant]:checked
 	box-sizing: border-box;
 }
 
-footer a {
+.day span {
+	background: rgb(255, 120, 0);
+	padding: 3px;
+	color: rgb(245, 245, 245);
+	padding: 3px;
+	border-radius: 5px;
+	margin: 0 2px 2px 0;
+	display: inline-block;
+}
+
+.day .temp {
+	background: #D1E0E0;
+	font-size: 90%;
+	color: black;
+	float: right;
+}
+
+footer a, .text a {
 	color: rgb(77, 77, 77);
 	border-bottom: 1px dotted currentColor;
 }
@@ -476,7 +461,6 @@ td:first-child {
 
 .text {
 	margin-left: 1em;
-	background: rgb(245, 245, 245);
 }
 
 /*========================================================================
@@ -587,7 +571,7 @@ td:first-child {
     width: 29.33%;
 }
 
-@media all and (max-width: 637px) {
+@media all and (max-width: 750px) {
     .grid .column_1, .grid .column_2, .grid .column_3, .grid .column_5 
     {
         width: 100% !important;
@@ -613,7 +597,7 @@ td:first-child {
 }
 
 
-@media all and (max-width: 970px) {
+@media all and (max-width: 1000px) {
 	nav h1, nav ul {
 		float: none;
 		text-align: center;

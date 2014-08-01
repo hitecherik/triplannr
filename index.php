@@ -1,5 +1,23 @@
 <?php
+	include "login.php";
+
 	session_start();
+
+	$url = false;
+
+	if (isset($_COOKIE['user'])) {
+		$_SESSION['user'] = $_COOKIE['user'];
+		$username = explode(",", $_COOKIE["user"])[1];
+
+		$mysqli = new_i_connection();
+		$result = $mysqli->prepare("SELECT `url` FROM `trips` WHERE `user` = ?");
+		$result->bind_param('s', $username);
+		$result->execute();
+		$result->bind_result($col1);
+		while ($result->fetch()) {
+			$url = $col1;
+		}
+	}
 
 	if (strlen(strstr($_SERVER['HTTP_USER_AGENT'], 'Firefox')) > 0) {
 	    $className = "firefox";
@@ -27,6 +45,10 @@
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
 	<script type="text/javascript" src="js/smoothscroll.js"></script>
+	<script type="text/javascript">
+	    $('input').attr('spellcheck', 'false');
+	    $('input').attr('autocomplete', 'off');
+    </script>
 </head>
 <body class="<?php echo $className; ?>" id="index_page">
 	<div class="jumbotron">
@@ -34,17 +56,22 @@
 			<h1>triplannr: <small>Dynamic Trip Planner</small></h1>
 			<ul>
 				<li><a href="index.php"><span>Home</span></a></li>
-				<li><a href="results.php"><span>Last trip</span></a></li>
-				<?php if ($_COOKIE["user"]) { ?>
+				<?php if (isset($_COOKIE["user"]) && $url) { ?>		
+				<li><a href="<?php echo $url; ?>"><span>Last trip</span></a></li>
+				<?php
+					}
+
+					if ($_SESSION["user"]) {
+				?>
 					<li><a href="index.php?logout=1"><span>Log out</span></a></li>
 				<?php } else { ?>
 					<li><a href="login-page.php"><span>Login</span></a></li>
 					<li><a href="signup.php"><span>Sign up</span></a></li>
 				<?php } ?>
-				<li><a href="thanks.html"><span>Thanks</span></a></li>
+				<li><a href="thanks.php"><span>Thanks</span></a></li>
 			</ul>
 		</nav>
-        <form action="results.php" method="post">
+        <form action="results.php" method="get">
 			<div class="wrap_1 grid">
 				<div class="row_8">
 					<div id="travel" class="column_5">

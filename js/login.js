@@ -1,4 +1,6 @@
 var main = function(){
+    $('input').attr('spellcheck', 'false');
+    $('input').attr('autocomplete', 'off');
 	$('.user_form').on('submit', function(e) {
         e.preventDefault();
 		if($("html").attr("id") == 'login_page') {
@@ -75,7 +77,7 @@ var signupPerson = function() {
                 } else if (data.substring(0, 9) == 'Duplicate') {
                     alert('User with the username ' + username + ' already exists');
                 } else {
-                    alert('Error: please try again.');
+                    alert('This username and password combination');
                 }
                 // data gets outputed here
             }

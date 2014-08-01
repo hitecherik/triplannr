@@ -2,6 +2,18 @@
 	include "login.php";
 	include "classes.php";
 
+	session_start();
+
+	if (isset($_COOKIE["user"])) {
+		$_SESSION["user"] = $_COOKIE["user"];
+		$username = explode(",", $_COOKIE["user"])[1];
+		$url = $_SERVER["REQUEST_URI"];
+
+		new_connection();
+		mysql_query("DELETE FROM `trips` WHERE `user` = \"$username\"");
+		$query = mysql_query("INSERT INTO `trips`(`user`, `url`) VALUES (\"$username\", \"$url\")");
+	}
+
 	// retrieve inputs
 	$place = ucwords($_REQUEST["destination"]);
 	$startAndEnd = [implode("-", array_reverse(explode("/", $_REQUEST["startDate"]))), implode("-", array_reverse(explode("/", $_REQUEST["endDate"])))];
@@ -122,7 +134,11 @@
 						$museums = simplexml_load_file("https://maps.googleapis.com/maps/api/place/nearbysearch/xml?radius=5000&key={$google_api_key}&location={$latlon}&types=museum")->result;
 					}
 
-					$day_activity = "<em>$day_activity:</em> {$museums[$museums_i]->name}";
+					if (isset($museums[$museums_i])) {
+						$museums_i = 0;
+					}
+
+					$day_activity = "<span>$day_activity:</span> {$museums[$museums_i]->name}";
 					$museums_i++;
 
 					break;
@@ -132,7 +148,11 @@
 						$cafes = simplexml_load_file("https://maps.googleapis.com/maps/api/place/nearbysearch/xml?radius=5000&key={$google_api_key}&location={$latlon}&types=cafe")->result;
 					}
 
-					$day_activity = "<em>$day_activity:</em> {$cafes[$cafes_i]->name}";
+					if (isset($cafes[$cafes_i])) {
+						$cafes_i = 0;
+					}
+					
+					$day_activity = "<span>$day_activity:</span> {$cafes[$cafes_i]->name}";
 					$cafes_i++;
 
 					break;
@@ -142,8 +162,17 @@
 						$restaurants = simplexml_load_file("https://maps.googleapis.com/maps/api/place/nearbysearch/xml?radius=5000&key={$google_api_key}&location={$latlon}&types=restaurant")->result;
 					}
 
-					$day_activity = "<em>$day_activity:</em> {$restaurants[$restaurants_i]->name}";
+					if (isset($restaurants[$restaurants_i])) {
+						$restaurants_i = 0;
+					}
+
+					$day_activity = "<span>$day_activity:</span> {$restaurants[$restaurants_i]->name}";
 					$restaurants_i++;
+
+					break;
+
+				default:
+					$day_activity = "<span>$day_activity</span>";
 
 					break;
 			}
@@ -167,14 +196,13 @@
 			<h1>triplannr: <small>Dynamic Trip Planner</small></h1>
 			<ul>
 				<li><a href="index.php"><span>Home</span></a></li>
-				<li><a href="results.php"><span>Last trip</span></a></li>
 				<?php if ($_COOKIE["user"]) { ?>
 					<li><a href="index.php?logout=1"><span>Log out</span></a></li>
 				<?php } else { ?>
 					<li><a href="login-page.php"><span>Login</span></a></li>
 					<li><a href="signup.php"><span>Sign up</span></a></li>
 				<?php } ?>
-				<li><a href="thanks.html"><span>Thanks</span></a></li>
+				<li><a href="thanks.php"><span>Thanks</span></a></li>
 			</ul>
 		</nav>
 	</div>
@@ -194,7 +222,7 @@
 							$i++;
 							$j = 0;
 
-							echo "<div class=\"day column_1\"><h3>Day $i</h3><table>";
+							echo "<div class=\"day column_1\"><h3>Day $i <span class='temp'>{$forecasts[$i-1]->avgTemp} &deg;C</span></h3><table>";
 
 							foreach ($day_activities as $day_activity) {
 								echo "<tr><td>{$times[$j]}</td><td>$day_activity</td></tr>";

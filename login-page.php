@@ -14,6 +14,7 @@
 	<title>triplannr :: Login</title>
 	<link href="css/opensans.css" rel='stylesheet' type='text/css' />
 	<link rel="stylesheet" href="css/stylesheet.css" />
+	<link rel="icon" href="img/logo.png">
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/CryptoJS.js"></script>
 	<script type="text/javascript" src="js/login.js"></script>
@@ -24,10 +25,9 @@
 			<h1>triplannr: <small>Dynamic Trip Planner</small></h1>
 			<ul>
 				<li><a href="index.php"><span>Home</span></a></li>
-				<li><a href="results.php"><span>Last trip</span></a></li>
 				<li><a href="login-page.php"><span>Login</span></a></li>
 				<li><a href="signup.php"><span>Sign up</span></a></li>
-				<li><a href="thanks.html"><span>Thanks</span></a></li>
+				<li><a href="thanks.php"><span>Thanks</span></a></li>
 			</ul>
 		</nav>
 
