@@ -134,7 +134,6 @@ input
 	border: none;
 	background: transparent;
 	font-size: 1em;
-	resize: horizontal;
 	outline: none;
 	border-bottom: 0.063em dotted #e3e3e3;
 }
