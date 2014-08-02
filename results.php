@@ -134,7 +134,7 @@
 						$museums = simplexml_load_file("https://maps.googleapis.com/maps/api/place/nearbysearch/xml?radius=5000&key={$google_api_key}&location={$latlon}&types=museum")->result;
 					}
 
-					if (isset($museums[$museums_i])) {
+					if (!isset($museums[$museums_i])) {
 						$museums_i = 0;
 					}
 
@@ -148,7 +148,7 @@
 						$cafes = simplexml_load_file("https://maps.googleapis.com/maps/api/place/nearbysearch/xml?radius=5000&key={$google_api_key}&location={$latlon}&types=cafe")->result;
 					}
 
-					if (isset($cafes[$cafes_i])) {
+					if (!isset($cafes[$cafes_i])) {
 						$cafes_i = 0;
 					}
 					
@@ -162,7 +162,7 @@
 						$restaurants = simplexml_load_file("https://maps.googleapis.com/maps/api/place/nearbysearch/xml?radius=5000&key={$google_api_key}&location={$latlon}&types=restaurant")->result;
 					}
 
-					if (isset($restaurants[$restaurants_i])) {
+					if (!isset($restaurants[$restaurants_i])) {
 						$restaurants_i = 0;
 					}
 

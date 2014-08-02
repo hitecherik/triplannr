@@ -57,30 +57,34 @@ var clearSpaces = function(str) {
 var signupPerson = function() {
 	var ajax, data, username = document.getElementById('username').value, password = document.getElementById('password').value, name = clearSpaces(document.getElementById('firstname').value + ' ' + document.getElementById('surname').value), passwordRtn = checkPassword(password);
     if (!passwordRtn && username.replace(' ', '').length && username.length > 4) {
-        if (window.XMLHttpRequest) {
+        if (name.length && name.indexOf(' ') != -1) {
+            if (window.XMLHttpRequest) {
             // new support
-            ajax = new XMLHttpRequest();
-        } else {
-            // old support
-            ajax = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        // create request
-        ajax.open("POST", "login-person.php", true);
-        ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        ajax.send('type=insert&username=' + username + '&name=' + name + '&password=' + CryptoJS.SHA3(password));
-        // ajax process data
-        ajax.onreadystatechange = function() {
-            if (ajax.readyState == 4 && ajax.status == 200) {
-                data = ajax.responseText;
-                if(data == 'success') {
-                    window.location = "../index.php";
-                } else if (data.substring(0, 9) == 'Duplicate') {
-                    alert('User with the username ' + username + ' already exists');
-                } else {
-                    alert('This username and password combination');
-                }
-                // data gets outputed here
+                ajax = new XMLHttpRequest();
+            } else {
+                // old support
+                ajax = new ActiveXObject("Microsoft.XMLHTTP");
             }
+            // create request
+            ajax.open("POST", "login-person.php", true);
+            ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            ajax.send('type=insert&username=' + username + '&name=' + name + '&password=' + CryptoJS.SHA3(password));
+            // ajax process data
+            ajax.onreadystatechange = function() {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    data = ajax.responseText;
+                    if(data == 'success') {
+                        window.location = "../index.php";
+                    } else if (data.substring(0, 9) == 'Duplicate') {
+                        alert('User with the username ' + username + ' already exists');
+                    } else {
+                        alert('This username and password combination');
+                    }
+                    // data gets outputed here
+                }
+            }
+        } else {
+            alert('You need to input a firstname and surname');
         }
     } else {
         switch (passwordRtn) {

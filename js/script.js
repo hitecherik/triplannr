@@ -1,5 +1,6 @@
 var main = function(){
-
+	$('input').attr('autocomplete', 'off');
+	$('input').attr('spellcheck', 'false');
 	var date = new Date();
 	var fullDate = (date.getDate().toString().length == 1 ? "0" : "") + date.getDate().toString() + '/' + ((date.getMonth() + 1).toString().length == 1 ? '0' + (date.getMonth() + 1).toString() : (date.getMonth() + 1).toString()) + '/' + date.getFullYear().toString();
 	$('#startDate').val(fullDate);
